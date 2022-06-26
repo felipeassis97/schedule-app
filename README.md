@@ -18,10 +18,11 @@
 
 - Cadastro, listagem e detalhes de eventos
 <p align="center">
-  <img src="images/event-form.png" width="150">
   <img src="images/event-list.png" width="150">
   <img src="images/event-info.png" width="150">
   <img src="images/event-map.png" width="150">
+    <img src="images/event-form.png" width="150">
+
 </p>
 
 - Erros e feedbacks
