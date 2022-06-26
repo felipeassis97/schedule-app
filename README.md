@@ -46,15 +46,8 @@
 
 ## Arquitetura
 
-Baseado nos conceitos de clean architecture prosposto por Robert C. Martin, a aplicação está dividida em 4 camadas:
-
-- Regras de Negócio Corporativas
-- Regras de Negócio da Aplicação
-- Adaptadores de Interface
-- Frameworks & Drivers (Externos)
-
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Flutterando/Clean-Dart/master/imgs/img3.png" width="600">
+  <img src="images/mvc.jpeg" width="600">
 </p>
 
 
