@@ -8,7 +8,7 @@ class AppRoutes {
     return {
       '/splash': (context) => const SplashScreen(),
       '/events': (context) => const EventsScreen(),
-      '/event_details': (context) => const EventDetails(),
+      EventDetails.routeName: (context) => const EventDetails(),
       '/event_location': (context) => const EventDetails(),
     };
   }

@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:schedule_app/shared/components/error_state.dart';
-import 'package:schedule_app/shared/components/event_card.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:provider/provider.dart';
+import 'package:schedule_app/features/events/controllers/events_store.dart';
+import 'package:schedule_app/features/events/view/screens/my_events.dart';
+import 'package:schedule_app/features/events/view/screens/soft_events.dart';
 import 'package:schedule_app/shared/components/primary_button.dart';
 import 'package:schedule_app/shared/theme/app_colors.dart';
 
-class EventsScreen extends StatelessWidget {
+class EventsScreen extends StatefulWidget {
   const EventsScreen({Key? key}) : super(key: key);
 
   @override
+  State<EventsScreen> createState() => _EventsScreenState();
+}
+
+class _EventsScreenState extends State<EventsScreen> {
+  @override
   Widget build(BuildContext context) {
+    final eventsStore = Provider.of<EventsStore>(context, listen: false);
+
     return Stack(
       children: [
         DefaultTabController(
@@ -17,12 +28,25 @@ class EventsScreen extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Eventos'),
             ),
-            body: Column(
-              children: [
-                _tabBar(),
-                _tabView(),
-              ],
-            ),
+            body: Observer(builder: (context) {
+              return LoadingOverlay(
+                isLoading: eventsStore.isLoading,
+                child: Column(
+                  children: [
+                    _tabBar(),
+                    _tabView(),
+                  ],
+                ),
+              );
+            }),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: 56,
+            width: double.infinity,
+            color: Colors.white,
           ),
         ),
         _primaryButton(context),
@@ -42,21 +66,26 @@ class EventsScreen extends StatelessWidget {
         tabs: [Tab(text: 'Eventos Soft'), Tab(text: 'Meus eventos')],
       );
 
-  Widget _tabView() => const Expanded(
+  Widget _tabView() => Expanded(
         child: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
-          children: [EventCard(), ErrorState()],
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            SoftEvents(
+                eventsStore: Provider.of<EventsStore>(context, listen: false)),
+            MyEvents(
+                eventsStore: Provider.of<EventsStore>(context, listen: false))
+          ],
         ),
       );
 
   Widget _primaryButton(context) => Positioned(
-        bottom: 24,
+        bottom: 16,
         left: 16,
         right: 16,
         child: PrimaryButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/event_details');
-          },
+          onPressed: () async =>
+              await Provider.of<EventsStore>(context, listen: false)
+                  .getEvents(),
           label: 'Criar novo evento',
         ),
       );
