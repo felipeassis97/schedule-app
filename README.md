@@ -36,9 +36,11 @@
 
 ## Features
 
-- Listar detalhes de um endereço à partir de um cep
-- Favoritar endereço utilizando o armazenamento local
-- Ver endereço no mapa
+- Autenticação (Firebase)
+- Listar eventos via consumo de API
+- Ver detalhes do evento
+- Ver local no Mapa
+- Criar evento (armazenamento local)
 
 
 
