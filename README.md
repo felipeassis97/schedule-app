@@ -29,7 +29,7 @@
   <img src="images/error-state.png" width="150">
   <img src="images/empty-state.png" width="150">
   <img src="images/feedback-success.png" width="150">
-  <img src="images/feedback-error" width="150">
+  <img src="images/feedback-error.png" width="150">
 </p>
 
 
