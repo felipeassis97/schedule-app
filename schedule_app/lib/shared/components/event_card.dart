@@ -8,7 +8,9 @@ import 'package:schedule_app/shared/utils/app_images.dart';
 
 class EventCard extends StatelessWidget {
   final EventModel event;
-  const EventCard({Key? key, required this.event}) : super(key: key);
+  final int maxLinesDescription;
+  const EventCard({Key? key, required this.event, this.maxLinesDescription = 3})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class EventCard extends StatelessWidget {
       );
 
   Widget _dateAndHour() => Padding(
-        padding: const EdgeInsets.only(top: 16, bottom: 8),
+        padding: const EdgeInsets.only(top: 16, bottom: 16),
         child: Container(
           constraints:
               const BoxConstraints(minWidth: 250, maxWidth: double.infinity),
@@ -82,12 +84,11 @@ class EventCard extends StatelessWidget {
 
   Widget _eventDescription() => Align(
         alignment: Alignment.centerLeft,
-        child: Flexible(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            constraints: const BoxConstraints(maxWidth: 350, minWidth: 280),
-            child: CustomTexts.smallText(event.eventDescription, maxLines: 5),
-          ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          constraints: const BoxConstraints(maxWidth: 350, minWidth: 280),
+          child: CustomTexts.smallText(event.eventDescription,
+              maxLines: maxLinesDescription),
         ),
       );
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:schedule_app/features/events/controllers/events_store.dart';
 import 'package:schedule_app/shared/theme/app_colors.dart';
 import 'package:schedule_app/shared/utils/app_images.dart';
 
@@ -9,7 +11,8 @@ class SplashScreen extends StatelessWidget {
 
   Future<void> _loadSettings(context) async {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.popAndPushNamed(context, '/events');
+      Navigator.popAndPushNamed(context, '/events',
+          arguments: Provider.of<EventsStore>(context, listen: false));
     });
     FlutterNativeSplash.remove();
   }

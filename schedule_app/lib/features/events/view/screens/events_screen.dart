@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
+import 'package:schedule_app/features/events/controllers/create_event_store.dart';
 import 'package:schedule_app/features/events/controllers/events_store.dart';
 import 'package:schedule_app/features/events/view/screens/my_events.dart';
 import 'package:schedule_app/features/events/view/screens/soft_events.dart';
 import 'package:schedule_app/shared/components/primary_button.dart';
 import 'package:schedule_app/shared/theme/app_colors.dart';
 
-class EventsScreen extends StatefulWidget {
+class EventsScreen extends StatelessWidget {
   const EventsScreen({Key? key}) : super(key: key);
+  static const routeName = '/events';
 
-  @override
-  State<EventsScreen> createState() => _EventsScreenState();
-}
-
-class _EventsScreenState extends State<EventsScreen> {
   @override
   Widget build(BuildContext context) {
-    final eventsStore = Provider.of<EventsStore>(context, listen: false);
+    final eventsStore =
+        ModalRoute.of(context)!.settings.arguments as EventsStore;
+    initialLoad(eventsStore);
 
     return Stack(
       children: [
@@ -34,7 +33,7 @@ class _EventsScreenState extends State<EventsScreen> {
                 child: Column(
                   children: [
                     _tabBar(),
-                    _tabView(),
+                    _tabView(eventsStore),
                   ],
                 ),
               );
@@ -66,27 +65,33 @@ class _EventsScreenState extends State<EventsScreen> {
         tabs: [Tab(text: 'Eventos Soft'), Tab(text: 'Meus eventos')],
       );
 
-  Widget _tabView() => Expanded(
+  Widget _tabView(EventsStore eventStore) => Expanded(
         child: TabBarView(
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            SoftEvents(
-                eventsStore: Provider.of<EventsStore>(context, listen: false)),
-            MyEvents(
-                eventsStore: Provider.of<EventsStore>(context, listen: false))
+            SoftEvents(eventsStore: eventStore),
+            MyEvents(eventsStore: eventStore)
           ],
         ),
       );
 
-  Widget _primaryButton(context) => Positioned(
-        bottom: 16,
-        left: 16,
-        right: 16,
-        child: PrimaryButton(
-          onPressed: () async =>
-              await Provider.of<EventsStore>(context, listen: false)
-                  .getEvents(),
-          label: 'Criar novo evento',
+  Widget _primaryButton(
+    context,
+  ) =>
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: PrimaryButton(
+            onPressed: () async => Navigator.pushNamed(context, '/newEvent',
+                arguments:
+                    Provider.of<CreateEventStore>(context, listen: false)),
+            label: 'Criar novo evento',
+          ),
         ),
       );
+
+  Future<void> initialLoad(EventsStore eventStore) async {
+    await eventStore.getEvents();
+  }
 }

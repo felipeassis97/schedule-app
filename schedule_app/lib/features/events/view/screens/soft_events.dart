@@ -23,19 +23,27 @@ class _SoftEventsState extends State<SoftEvents> {
           ? const EmptyState()
           : eventsStore.isError
               ? const ErrorState()
-              : ListView.builder(
-                  itemCount: eventsStore.eventList.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () => Navigator.pushNamed(context, '/eventDetails',
-                          arguments: eventsStore.eventList[index]),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: ResumedEventCard(
-                            event: eventsStore.eventList[index]),
+              : Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: eventsStore.eventList.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () => Navigator.pushNamed(
+                                context, '/eventDetails',
+                                arguments: eventsStore.eventList[index]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: ResumedEventCard(
+                                  event: eventsStore.eventList[index]),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
+                    ),
+                    const SizedBox(height: 48),
+                  ],
                 );
     });
   }

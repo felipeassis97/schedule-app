@@ -35,7 +35,7 @@ abstract class AppColors {
   static const Color neutralColorLowMedium = Color(0xFF5B6166);
   static const Color neutralColorLowDark = Color(0xFF132632);
   static const Color neutralColorHightPure = Color(0xFFFFFFFF);
-  static const Color neutralColorHightLight = Color(0xFFF5F5F5);
+  static const Color greyMedium = Color(0xFF797979);
   static const Color neutralColorHightMedium = Color(0xFFE0E0E0);
   static const Color neutralColorHightDark = Color(0xFFD9D9D9);
 }

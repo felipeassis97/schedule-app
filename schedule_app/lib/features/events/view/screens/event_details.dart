@@ -14,7 +14,26 @@ class EventDetails extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Detalhes do evento'),
       ),
-      body: EventCard(event: event),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: [
+            EventCard(
+              event: event,
+              maxLinesDescription: 10,
+            ),
+            Positioned(
+              bottom: 8,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                    onPressed: () {}, child: const Text('Ver no mapa')),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -17,7 +17,7 @@ class PrimaryButton extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(45))),
         backgroundColor: MaterialStateProperty.all(AppColors.deepPurple),
         padding: MaterialStateProperty.all(
-            const EdgeInsets.symmetric(vertical: 8, horizontal: 56)),
+            const EdgeInsets.symmetric(vertical: 8, horizontal: 64)),
         textStyle: MaterialStateProperty.all(
           Theme.of(context).textTheme.headline6,
         ),

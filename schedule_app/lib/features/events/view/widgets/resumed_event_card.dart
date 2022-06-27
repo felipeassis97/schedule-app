@@ -21,7 +21,7 @@ class ResumedEventCard extends StatelessWidget {
   }
 
   Widget _divider() => Container(
-        constraints: const BoxConstraints(maxHeight: 340),
+        constraints: const BoxConstraints(maxHeight: 320),
         child: const VerticalDivider(
           color: AppColors.neutralColorHightDark,
           thickness: 2,
