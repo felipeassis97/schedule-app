@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:schedule_app/features/events/controllers/events_store.dart';
+import 'package:schedule_app/features/list_events/controllers/events_store.dart';
 import 'package:schedule_app/shared/theme/app_colors.dart';
 import 'package:schedule_app/shared/utils/app_images.dart';
 

@@ -3,15 +3,18 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
-import 'package:schedule_app/features/events/services/get_address_details.dart';
-import 'package:schedule_app/features/events/services/get_cordinates_by_address.dart';
-part 'create_event_store.g.dart';
+import 'package:schedule_app/features/create_event/services/get_address_details.dart';
+import 'package:schedule_app/features/create_event/services/get_cordinates_by_address.dart';
+import 'package:schedule_app/features/create_event/services/save_local_event.dart';
+import 'package:schedule_app/features/list_events/model/event_model.dart';
+part '../../list_events/controllers/create_event_store.g.dart';
 
 class CreateEventStore = _CreateEventStoreBase with _$CreateEventStore;
 
 abstract class _CreateEventStoreBase with Store {
   final addressDetails = GetAddressDetails();
   final getCordinatesByAddress = GetCordinatesByAddress();
+  final localEvent = SaveLocalEvent();
 
 //States
   @observable
@@ -183,12 +186,12 @@ abstract class _CreateEventStoreBase with Store {
 
   //Address details by cep
   @action
-  Future<void> getDetailsAddress({required String cep}) async {
+  Future<void> getDetailsAddress(context, {required String cep}) async {
     try {
       initialStateLoading();
 
       setHasErrorZipcode(false);
-      final result = await addressDetails.getAddressByCep(cep: cep);
+      final result = await addressDetails.getAddressByCep(context, cep: cep);
       zipcode.text = result.zipcode;
       street.text = result.street;
       neighborhood.text = result.neighborhood;
@@ -237,6 +240,18 @@ abstract class _CreateEventStoreBase with Store {
 
       inspect(cordinates);
 
+      endStateLoading();
+    } catch (_) {
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> saveEventStorage({required EventModel event}) async {
+    initialStateLoading();
+    try {
+      final result = localEvent.saveLocalEvent(event: event);
+      inspect(result);
       endStateLoading();
     } catch (_) {
       setIsError(true);

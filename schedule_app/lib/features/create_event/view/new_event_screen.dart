@@ -3,7 +3,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:mobx/mobx.dart';
-import 'package:schedule_app/features/events/controllers/create_event_store.dart';
+import 'package:schedule_app/features/create_event/controller/create_event_store.dart';
 import 'package:schedule_app/shared/components/custom_textfield.dart';
 import 'package:schedule_app/shared/components/primary_button.dart';
 import 'package:schedule_app/shared/components/snack_bar.dart';
@@ -196,7 +196,8 @@ class _CreateNewEventState extends State<CreateNewEvent> {
                   formController.zipcode.text.isEmpty
                       ? formController.setHasErrorZipcode(true)
                       : await formController
-                          .getDetailsAddress(cep: formController.zipcode.text)
+                          .getDetailsAddress(context,
+                              cep: formController.zipcode.text)
                           .then((_) => FocusScope.of(context).unfocus());
                 },
                 child: Container(

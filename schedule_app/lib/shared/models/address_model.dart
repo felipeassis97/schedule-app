@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:schedule_app/features/events/models/location_model.dart';
+import 'package:schedule_app/shared/models/location_model.dart';
 
 class AddressModel {
   final int? id;

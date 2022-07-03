@@ -61,8 +61,8 @@ mixin _$EventsStore on _EventsStoreBase, Store {
       AsyncAction('_EventsStoreBase.getEvents', context: context);
 
   @override
-  Future<void> getEvents() {
-    return _$getEventsAsyncAction.run(() => super.getEvents());
+  Future<void> getEvents(dynamic context) {
+    return _$getEventsAsyncAction.run(() => super.getEvents(context));
   }
 
   late final _$_EventsStoreBaseActionController =

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:schedule_app/features/events/models/event_model.dart';
+import 'package:schedule_app/features/list_events/model/event_model.dart';
 import 'package:schedule_app/shared/components/event_card.dart';
 import 'package:schedule_app/shared/theme/app_colors.dart';
 import 'package:schedule_app/shared/utils/app_formaters.dart';

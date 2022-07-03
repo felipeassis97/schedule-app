@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:schedule_app/features/events/models/event_model.dart';
-import 'package:schedule_app/features/events/services/get_events.dart';
+import 'package:schedule_app/features/list_events/model/event_model.dart';
+import 'package:schedule_app/features/list_events/services/get_events.dart';
 part 'events_store.g.dart';
 
 class EventsStore = _EventsStoreBase with _$EventsStore;
@@ -42,15 +42,16 @@ abstract class _EventsStoreBase with Store {
   }
 
   @action
-  Future<void> getEvents() async {
+  Future<void> getEvents(context) async {
     try {
       initialStateLoading();
 
-      final result = await service.getEventsList();
+      final result = await service.getEventsList(context);
       setCurrentList(result);
 
       endStateLoading();
     } catch (_) {
+      setIsLoading(false);
       setIsError(true);
     }
   }

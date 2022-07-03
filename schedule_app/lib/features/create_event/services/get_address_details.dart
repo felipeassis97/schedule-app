@@ -1,13 +1,12 @@
 import 'dart:developer';
-
-import 'package:schedule_app/features/events/models/address_model.dart';
+import 'package:provider/provider.dart';
 import 'package:schedule_app/shared/client/schedule_client_impl.dart';
+import 'package:schedule_app/shared/models/address_model.dart';
 import 'package:schedule_app/shared/utils/app_configs.dart';
 
 class GetAddressDetails {
-  final client = ScheduleClientImpl();
-
-  Future<AddressModel> getAddressByCep({required String cep}) async {
+  Future<AddressModel> getAddressByCep(context, {required String cep}) async {
+    final client = Provider.of<ScheduleClientImpl>(context, listen: false);
     final response =
         await client.get('${AppConfigs.baseUrlSearchCep}/$cep/json/');
     if (response.statusCode == 200) {

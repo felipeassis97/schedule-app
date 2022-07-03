@@ -12,6 +12,8 @@ class ScheduleClientImpl implements ScheduleClient {
     final response = await client.get(path,
         queryParameters: query,
         options: dio.Options(
+            sendTimeout: 1000,
+            receiveTimeout: 1000,
             headers: headers,
             validateStatus: (status) =>
                 status != null && (status >= 200 && status <= 499)));

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:schedule_app/features/events/controllers/events_store.dart';
+import 'package:schedule_app/features/list_events/controllers/events_store.dart';
 import 'package:schedule_app/shared/components/empty_state.dart';
 
 class MyEvents extends StatefulWidget {

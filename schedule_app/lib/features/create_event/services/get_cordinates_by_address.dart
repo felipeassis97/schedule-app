@@ -1,5 +1,5 @@
 import 'package:geocoding/geocoding.dart';
-import 'package:schedule_app/features/events/models/location_model.dart';
+import 'package:schedule_app/shared/models/location_model.dart';
 
 class GetCordinatesByAddress {
   Future<LocationModel> cordinatesAddressByCep(

@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:schedule_app/features/events/models/address_model.dart';
+import 'package:schedule_app/shared/models/address_model.dart';
 
 class EventModel {
   final int id;

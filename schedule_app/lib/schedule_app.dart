@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:schedule_app/features/events/controllers/events_store.dart';
+import 'package:provider/single_child_widget.dart';
+import 'package:schedule_app/features/list_events/controllers/events_store.dart';
+import 'package:schedule_app/shared/client/schedule_client_impl.dart';
 import 'package:schedule_app/shared/routes/app_routes.dart';
 import 'package:schedule_app/shared/theme/app_theme.dart';
 
@@ -11,9 +13,7 @@ class ScheduleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        Provider<EventsStore>(create: (_) => EventsStore()),
-      ],
+      providers: providers,
       child: MaterialApp(
         title: 'Schedule App',
         theme: AppTheme.materialTheme(context),
@@ -29,4 +29,12 @@ class ScheduleApp extends StatelessWidget {
       ),
     );
   }
+
+  static List<SingleChildWidget> providers = [
+    //Client http
+    Provider<ScheduleClientImpl>(create: (_) => ScheduleClientImpl()),
+
+    //Stores
+    Provider<EventsStore>(create: (_) => EventsStore()),
+  ];
 }

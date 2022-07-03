@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:schedule_app/features/events/controllers/events_store.dart';
-import 'package:schedule_app/features/events/view/screens/my_events.dart';
-import 'package:schedule_app/features/events/view/screens/soft_events.dart';
+import 'package:schedule_app/features/list_events/controllers/events_store.dart';
+import 'package:schedule_app/features/list_events/view/screens/my_events.dart';
+import 'package:schedule_app/features/list_events/view/screens/soft_events.dart';
 import 'package:schedule_app/shared/components/primary_button.dart';
 import 'package:schedule_app/shared/theme/app_colors.dart';
 
@@ -15,7 +15,7 @@ class EventsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final eventsStore =
         ModalRoute.of(context)!.settings.arguments as EventsStore;
-    initialLoad(eventsStore);
+    initialLoad(context, eventsStore);
 
     return Stack(
       children: [
@@ -87,7 +87,7 @@ class EventsScreen extends StatelessWidget {
         ),
       );
 
-  Future<void> initialLoad(EventsStore eventStore) async {
-    await eventStore.getEvents();
+  Future<void> initialLoad(context, EventsStore eventStore) async {
+    await eventStore.getEvents(context);
   }
 }

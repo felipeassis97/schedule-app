@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:schedule_app/features/events/models/address_model.dart';
+import 'package:schedule_app/shared/models/address_model.dart';
 
 String formatDayAndMonth(DateTime now) {
   return DateFormat('dd/MM').format(now);

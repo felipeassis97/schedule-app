@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_event_store.dart';
+part of '../../create_event/controller/create_event_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -419,9 +419,19 @@ mixin _$CreateEventStore on _CreateEventStoreBase, Store {
       AsyncAction('_CreateEventStoreBase.getDetailsAddress', context: context);
 
   @override
-  Future<void> getDetailsAddress({required String cep}) {
+  Future<void> getDetailsAddress(dynamic context, {required String cep}) {
     return _$getDetailsAddressAsyncAction
-        .run(() => super.getDetailsAddress(cep: cep));
+        .run(() => super.getDetailsAddress(context, cep: cep));
+  }
+
+  late final _$cordinatesByAddressAsyncAction = AsyncAction(
+      '_CreateEventStoreBase.cordinatesByAddress',
+      context: context);
+
+  @override
+  Future<void> cordinatesByAddress() {
+    return _$cordinatesByAddressAsyncAction
+        .run(() => super.cordinatesByAddress());
   }
 
   late final _$_CreateEventStoreBaseActionController =
@@ -576,6 +586,28 @@ mixin _$CreateEventStore on _CreateEventStoreBase, Store {
         name: '_CreateEventStoreBase.validateForm');
     try {
       return super.validateForm();
+    } finally {
+      _$_CreateEventStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void initialStateLoading() {
+    final _$actionInfo = _$_CreateEventStoreBaseActionController.startAction(
+        name: '_CreateEventStoreBase.initialStateLoading');
+    try {
+      return super.initialStateLoading();
+    } finally {
+      _$_CreateEventStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void endStateLoading() {
+    final _$actionInfo = _$_CreateEventStoreBaseActionController.startAction(
+        name: '_CreateEventStoreBase.endStateLoading');
+    try {
+      return super.endStateLoading();
     } finally {
       _$_CreateEventStoreBaseActionController.endAction(_$actionInfo);
     }
