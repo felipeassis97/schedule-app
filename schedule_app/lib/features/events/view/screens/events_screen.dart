@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:provider/provider.dart';
-import 'package:schedule_app/features/events/controllers/create_event_store.dart';
 import 'package:schedule_app/features/events/controllers/events_store.dart';
 import 'package:schedule_app/features/events/view/screens/my_events.dart';
 import 'package:schedule_app/features/events/view/screens/soft_events.dart';
@@ -83,9 +81,7 @@ class EventsScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(bottom: 16.0),
           child: PrimaryButton(
-            onPressed: () async => Navigator.pushNamed(context, '/newEvent',
-                arguments:
-                    Provider.of<CreateEventStore>(context, listen: false)),
+            onPressed: () async => Navigator.pushNamed(context, '/newEvent'),
             label: 'Criar novo evento',
           ),
         ),

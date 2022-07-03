@@ -1,6 +1,6 @@
 class LocationModel {
-  final String lat;
-  final String long;
+  final double? lat;
+  final double? long;
   LocationModel({
     required this.lat,
     required this.long,
@@ -8,9 +8,7 @@ class LocationModel {
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
     return LocationModel(
-      lat: json['lat'],
-      long: json['long'],
-    );
+        lat: double.tryParse(json['lat']), long: double.tryParse(json['long']));
   }
 
   Map<String, dynamic> toJson() {

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:schedule_app/shared/theme/app_colors.dart';
 
 class CustomSnackBar {
-  Flushbar successSnackBar(context, {required String message}) => Flushbar(
+  static Flushbar successSnackBar(context, {required String message}) =>
+      Flushbar(
         flushbarStyle: FlushbarStyle.FLOATING,
         margin: const EdgeInsets.all(8),
         borderRadius: BorderRadius.circular(8),
@@ -21,11 +22,11 @@ class CustomSnackBar {
           size: 28.0,
           color: AppColors.successColor,
         ),
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 4),
         leftBarIndicatorColor: AppColors.successColor,
       )..show(context);
 
-  Flushbar errorSnackBar(context, {required String message}) => Flushbar(
+  static Flushbar errorSnackBar(context, {required String message}) => Flushbar(
         flushbarStyle: FlushbarStyle.FLOATING,
         margin: const EdgeInsets.all(8),
         boxShadows: const [
@@ -43,7 +44,7 @@ class CustomSnackBar {
           size: 28.0,
           color: AppColors.errorColor,
         ),
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 4),
         leftBarIndicatorColor: AppColors.errorColor,
       )..show(context);
 }

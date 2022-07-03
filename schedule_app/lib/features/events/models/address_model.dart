@@ -3,25 +3,25 @@
 import 'package:schedule_app/features/events/models/location_model.dart';
 
 class AddressModel {
-  final int id;
+  final int? id;
   final String zipcode;
   final String street;
-  final String number;
-  final String complement;
+  final String? number;
+  final String? complement;
   final String neighborhood;
   final String city;
   final String uf;
-  final LocationModel location;
+  final LocationModel? location;
   AddressModel({
-    required this.id,
+    this.id,
     required this.zipcode,
     required this.street,
-    required this.number,
-    required this.complement,
+    this.number,
+    this.complement,
     required this.neighborhood,
     required this.city,
     required this.uf,
-    required this.location,
+    this.location,
   });
 
   factory AddressModel.fromJson(Map<String, dynamic> json) {
@@ -34,7 +34,19 @@ class AddressModel {
       neighborhood: json['neighborhood'],
       city: json['city'],
       uf: json['uf'],
-      location: LocationModel.fromJson(json['location']),
+      location: json['location'] != null
+          ? LocationModel.fromJson(json['location'])
+          : null,
+    );
+  }
+
+  factory AddressModel.fromJsonByViacep(Map<String, dynamic> json) {
+    return AddressModel(
+      zipcode: json['cep'],
+      street: json['logradouro'],
+      neighborhood: json['bairro'],
+      city: json['localidade'],
+      uf: json['uf'],
     );
   }
 
@@ -48,7 +60,7 @@ class AddressModel {
     addressData['neighborhood'] = neighborhood;
     addressData['city'] = city;
     addressData['uf'] = uf;
-    addressData['location'] = location.toJson();
+    addressData['location'] = location?.toJson();
 
     return addressData;
   }

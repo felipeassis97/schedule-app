@@ -10,7 +10,7 @@ class AppRoutes {
       '/splash': (context) => const SplashScreen(),
       EventsScreen.routeName: (context) => const EventsScreen(),
       EventDetails.routeName: (context) => const EventDetails(),
-      CreateNewEvent.routeName: (context) => const CreateNewEvent(),
+      '/newEvent': (context) => const CreateNewEvent(),
       '/event_location': (context) => const EventDetails(),
     };
   }
